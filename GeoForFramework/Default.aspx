@@ -1,44 +1,46 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="GeoForFramework._Default" %>
+﻿<%@ Page Title="WGS84 to SWEREF99 TM" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="GeoForFramework._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
     <main>
-        <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-        </section>
+        <h1>WGS84 to SWEREF99 TM</h1>
+        <p class="lead">Convert longitude/latitude in WGS84 to the Swedish national grid coordinates in SWEREF99 TM.</p>
 
-        <div class="row">
-            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
-                <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
-                <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
-                <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
-            </section>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="h4">Input</h2>
+                        <div class="mb-3">
+                            <label class="form-label" for="LatitudeTextBox">Latitude (WGS84)</label>
+                            <asp:TextBox ID="LatitudeTextBox" runat="server" CssClass="form-control" Text="57.708870" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="LongitudeTextBox">Longitude (WGS84)</label>
+                            <asp:TextBox ID="LongitudeTextBox" runat="server" CssClass="form-control" Text="11.974560" />
+                        </div>
+                        <asp:Button ID="ConvertButton" runat="server" Text="Convert" CssClass="btn btn-primary" OnClick="ConvertButton_Click" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="h4">Output</h2>
+                        <div class="mb-3">
+                            <label class="form-label">Easting</label>
+                            <asp:TextBox ID="EastingTextBox" runat="server" CssClass="form-control" ReadOnly="true" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Northing</label>
+                            <asp:TextBox ID="NorthingTextBox" runat="server" CssClass="form-control" ReadOnly="true" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Result</label>
+                            <asp:Label ID="ResultLabel" runat="server" CssClass="form-control-plaintext" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
-
 </asp:Content>
