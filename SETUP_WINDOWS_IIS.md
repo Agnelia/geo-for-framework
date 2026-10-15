@@ -1,9 +1,10 @@
-# Windows + IIS setup for geo-for-framework
+# Windows + IIS Express setup for geo-for-framework
 
 This project is a .NET Framework WebForms app that uses PROJ as the authoritative geodetic engine for WGS84 -> SWEREF99 TM.
 
 Important:
-- This setup is for Windows + Visual Studio + IIS.
+- This setup is for Windows + Visual Studio + IIS Express only.
+- No separate local IIS installation is required for development.
 - Do not use WSL.
 - The PROJ native files must be bundled with the app in `GeoForFramework/App_Data/proj`.
 
@@ -14,12 +15,21 @@ Install on the developer machine:
   - ASP.NET and web development
   - .NET desktop development
   - .NET Framework 4.8.1 targeting pack
-- IIS Manager (Windows Server or Windows 10/11 with IIS features enabled)
 - PROJ runtime binaries for Windows
 
-Download the Windows PROJ runtime from a trusted source and place the native files in the app folder before deployment:
+No full IIS Manager setup is needed for local development. IIS Express is included with Visual Studio and is the supported local runtime.
+
+Download the Windows PROJ runtime from the official PROJ project binaries or a trusted Windows distribution package, then extract it and copy the native files into the app folder before running locally:
 - `proj.dll`
 - `proj.db`
+
+A typical setup is:
+1. Download the official Windows PROJ binary package from the PROJ release page or a trusted Windows package source.
+2. Extract the archive to a temporary folder.
+3. Locate the files in the extracted package.
+   - `proj.dll` is usually under a `bin` folder.
+   - `proj.db` is usually under a `share\proj` or similar data folder.
+4. Copy both files into `GeoForFramework/App_Data/proj` so the app can load them from the project folder.
 
 The folder structure should look like this:
 
@@ -27,7 +37,7 @@ The folder structure should look like this:
 - `proj.dll`
 - `proj.db`
 
-If you are using a PROJ package from a Windows distribution, make sure the DLL and the database file are copied into that folder.
+If the package contains the files in nested folders, keep only the required two files and place them directly in `App_Data/proj`.
 
 ## 2. Open the project in Visual Studio
 
@@ -37,15 +47,19 @@ If you are using a PROJ package from a Windows distribution, make sure the DLL a
 4. Restore NuGet packages if prompted.
 5. Build the solution.
 
-## 3. Local development on Windows
+## 3. Local development on Windows with IIS Express
 
 1. Make sure the app has the `App_Data/proj` folder with the native PROJ files.
-2. In Visual Studio, set the project to run with IIS Express or local IIS.
+2. In Visual Studio, set the project to run with IIS Express.
 3. Start debugging with F5.
 4. Open the site in the browser.
 5. Enter a WGS84 latitude/longitude and convert to SWEREF99 TM.
 
+There is no special need for a separate local IIS site or IIS Manager setup when developing locally. IIS Express is sufficient for this project.
+
 ## 4. IIS deployment on Windows Server
+
+This section is only relevant when deploying to a Windows server outside the local development workflow.
 
 1. Build the project in `Release` configuration.
 2. Copy the output to the IIS site folder, for example:
@@ -90,7 +104,7 @@ This is the approved and maintained mapping for Swedish national grid conversion
 
 This project should be run directly on Windows with:
 - Visual Studio
-- IIS
-- local Windows deployment
+- IIS Express
+- local Windows development
 
-Do not rely on WSL for the app runtime or deployment flow.
+Do not rely on WSL for the app runtime or local development flow.
