@@ -32,15 +32,14 @@ This guide follows the [official PROJ installation and build requirements](https
    extracted source directory.
 
 3. **Configure a release build.** For PROJ 9.5 or newer, configure the Windows
-   library name to match this application's P/Invoke declaration (`proj.dll`):
+   library name to match this application's P/Invoke declaration (`proj_9.dll`):
 
    ```bat
-   cmake -S . -B build -DBUILD_TESTING=OFF -DPROJ_OUTPUT_NAME=proj -DAPPEND_SOVERSION=OFF
+   cmake -S . -B build -DBUILD_TESTING=OFF -DPROJ_OUTPUT_NAME=proj_9 -DAPPEND_SOVERSION=OFF
    ```
 
    The library-name options were added in PROJ 9.5. For an older PROJ release,
-   check the produced DLL name before using it; this application currently
-   imports `proj.dll`, so a version-suffixed DLL is not a drop-in replacement.
+   use a compatible runtime package that provides `proj_9.dll`.
 
 4. **Build and install PROJ.** These commands install the runtime into
    `C:\proj-install`:
@@ -58,9 +57,9 @@ This guide follows the [official PROJ installation and build requirements](https
    required resources with `proj.db`.
 
 6. **Copy the runtime files into the application.** Create
-   `GeoForFramework\App_Data\proj` if it does not exist. Copy `proj.dll` and
+   `GeoForFramework\App_Data\proj` if it does not exist. Copy `proj_9.dll` and
    `proj.db` there. Also copy any dependent runtime DLLs from the PROJ install
-   that `proj.dll` needs; keep them beside `proj.dll`. Do not copy build tools
+   that `proj_9.dll` needs; keep them beside `proj_9.dll`. Do not copy build tools
    or the `projsync` executable.
 
 7. **Check the application folder.** At minimum, it should contain:
@@ -69,7 +68,7 @@ This guide follows the [official PROJ installation and build requirements](https
    GeoForFramework/
      App_Data/
        proj/
-         proj.dll
+         proj_9.dll
          proj.db
          (any required PROJ runtime dependency DLLs)
    ```
@@ -87,7 +86,7 @@ for the rest of the Windows development and deployment steps.
 
 The official PROJ installation guide describes installing Windows packages
 through [OSGeo4W](https://trac.osgeo.org/osgeo4w/). This avoids compiling PROJ,
-but you must still copy the compatible `proj.dll`, `proj.db`, and any required
-runtime dependency DLLs into the application's `App_Data\proj` folder. Check
-the DLL's actual filename and architecture: do not simply rename a
-version-suffixed DLL to `proj.dll`.
+but you must still copy the compatible `proj_9.dll`, `proj.db`, and any
+required runtime dependency DLLs into the application's `App_Data\proj` folder.
+Check the DLL's actual filename and architecture; do not rename another PROJ
+version's DLL to `proj_9.dll`.
