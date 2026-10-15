@@ -6,6 +6,8 @@ namespace GeoForFramework
 {
     public partial class _Default : Page
     {
+        private readonly CoordinateTransformService _coordinateTransformService = new CoordinateTransformService();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,9 +27,9 @@ namespace GeoForFramework
                 return;
             }
 
-            if (!CoordinateConverter.TryConvertWgs84ToSweref99Tm(latitude, longitude, out var easting, out var northing))
+            if (!_coordinateTransformService.TryTransformWgs84ToSweref99Tm(latitude, longitude, out var easting, out var northing))
             {
-                ResultLabel.Text = "Latitude and longitude values are out of range for WGS84.";
+                ResultLabel.Text = "The PROJ data files were not found in the app or the values are outside the valid WGS84 range.";
                 EastingTextBox.Text = string.Empty;
                 NorthingTextBox.Text = string.Empty;
                 return;
