@@ -19,9 +19,17 @@ Install on the developer machine:
 
 No full IIS Manager setup is needed for local development. IIS Express is included with Visual Studio and is the supported local runtime.
 
-Download the Windows PROJ runtime from a trusted source and place the native files in the app folder before running locally:
+Download the Windows PROJ runtime from the official PROJ project binaries or a trusted Windows distribution package, then extract it and copy the native files into the app folder before running locally:
 - `proj.dll`
 - `proj.db`
+
+A typical setup is:
+1. Download the official Windows PROJ binary package from the PROJ release page or a trusted Windows package source.
+2. Extract the archive to a temporary folder.
+3. Locate the files in the extracted package.
+   - `proj.dll` is usually under a `bin` folder.
+   - `proj.db` is usually under a `share\proj` or similar data folder.
+4. Copy both files into `GeoForFramework/App_Data/proj` so the app can load them from the project folder.
 
 The folder structure should look like this:
 
@@ -29,7 +37,7 @@ The folder structure should look like this:
 - `proj.dll`
 - `proj.db`
 
-If you are using a PROJ package from a Windows distribution, make sure the DLL and the database file are copied into that folder.
+If the package contains the files in nested folders, keep only the required two files and place them directly in `App_Data/proj`.
 
 ## 2. Open the project in Visual Studio
 
