@@ -41,7 +41,7 @@ The folder structure should look like this:
 - `proj_9.dll`
 - `proj.db`
 
-If the package contains the files in nested folders, place the required files directly in `App_Data/proj`. Do not omit runtime DLL dependencies required by `proj.dll`.
+If the package contains the files in nested folders, place the required files directly in `App_Data/proj`. Do not omit runtime DLL dependencies required by `proj_9.dll`.
 
 ## 2. Open the project in Visual Studio
 
@@ -70,7 +70,7 @@ This section is only relevant when deploying to a Windows server outside the loc
    - `C:\inetpub\wwwroot\geo-for-framework`
 3. Ensure the app folder contains:
    - the compiled ASP.NET WebForms files
-   - `App_Data\proj\proj.dll`
+   - `App_Data\proj\proj_9.dll`
    - `App_Data\proj\proj.db`
 4. In IIS Manager:
    - Create or select an IIS site
