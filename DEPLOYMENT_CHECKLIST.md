@@ -15,7 +15,7 @@ Copy these files into:
 - `GeoForFramework/App_Data/proj/`
 
 Required files:
-- `proj.dll`
+- `proj_9.dll`
 - `proj.db`
 - any required runtime dependencies (depending on the PROJ version and Windows build)
 
@@ -27,7 +27,7 @@ Notes:
 ## 3) Check app-local layout
 Your deployed app should include a directory similar to:
 - `GeoForFramework/App_Data/proj/`
-- `GeoForFramework/App_Data/proj/proj.dll`
+- `GeoForFramework/App_Data/proj/proj_9.dll`
 - `GeoForFramework/App_Data/proj/proj.db`
 
 Verify that the application can resolve this folder at runtime.

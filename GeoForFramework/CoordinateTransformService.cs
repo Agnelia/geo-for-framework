@@ -134,31 +134,31 @@ namespace GeoForFramework
             public double v4;
         }
 
-        [DllImport("proj.dll", EntryPoint = "proj_context_create", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("proj_9.dll", EntryPoint = "proj_context_create", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr proj_context_create_windows();
 
         [DllImport("libproj.so", EntryPoint = "proj_context_create", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr proj_context_create_unix();
 
-        [DllImport("proj.dll", EntryPoint = "proj_create_crs_to_crs", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        [DllImport("proj_9.dll", EntryPoint = "proj_create_crs_to_crs", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private static extern IntPtr proj_create_crs_to_crs_windows(IntPtr context, string source, string target, string options);
 
         [DllImport("libproj.so", EntryPoint = "proj_create_crs_to_crs", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private static extern IntPtr proj_create_crs_to_crs_unix(IntPtr context, string source, string target, string options);
 
-        [DllImport("proj.dll", EntryPoint = "proj_trans", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("proj_9.dll", EntryPoint = "proj_trans", CallingConvention = CallingConvention.Cdecl)]
         private static extern PJ_COORD proj_trans_windows(IntPtr transform, int direction, PJ_COORD point);
 
         [DllImport("libproj.so", EntryPoint = "proj_trans", CallingConvention = CallingConvention.Cdecl)]
         private static extern PJ_COORD proj_trans_unix(IntPtr transform, int direction, PJ_COORD point);
 
-        [DllImport("proj.dll", EntryPoint = "proj_destroy", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("proj_9.dll", EntryPoint = "proj_destroy", CallingConvention = CallingConvention.Cdecl)]
         private static extern void proj_destroy_windows(IntPtr obj);
 
         [DllImport("libproj.so", EntryPoint = "proj_destroy", CallingConvention = CallingConvention.Cdecl)]
         private static extern void proj_destroy_unix(IntPtr obj);
 
-        [DllImport("proj.dll", EntryPoint = "proj_context_destroy", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("proj_9.dll", EntryPoint = "proj_context_destroy", CallingConvention = CallingConvention.Cdecl)]
         private static extern void proj_context_destroy_windows(IntPtr obj);
 
         [DllImport("libproj.so", EntryPoint = "proj_context_destroy", CallingConvention = CallingConvention.Cdecl)]

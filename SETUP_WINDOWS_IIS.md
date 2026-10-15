@@ -20,7 +20,7 @@ Install on the developer machine:
 No full IIS Manager setup is needed for local development. IIS Express is included with Visual Studio and is the supported local runtime.
 
 Download the Windows PROJ runtime from the official PROJ project binaries or a trusted Windows distribution package, then extract it and copy the native files into the app folder before running locally. For detailed steps, including the option to build PROJ from source, see [GETTING_PROJ_FILES.md](GETTING_PROJ_FILES.md).
-- `proj.dll`
+- `proj_9.dll`
 - `proj.db`
 - any runtime DLL dependencies required by that PROJ build
 
@@ -28,20 +28,20 @@ A typical setup is:
 1. Download the official Windows PROJ binary package from the PROJ release page or a trusted Windows package source.
 2. Extract the archive to a temporary folder.
 3. Locate the files in the extracted package.
-   - `proj.dll` is usually under a `bin` folder.
+   - `proj_9.dll` is usually under a `bin` folder.
    - `proj.db` is usually under a `share\proj` or similar data folder.
 4. Copy these files into `GeoForFramework/App_Data/proj` so the app can load them from the project folder:
-   - `proj.dll`
+   - `proj_9.dll`
    - `proj.db`
-   - any runtime DLL dependencies required by `proj.dll`
+   - any runtime DLL dependencies required by `proj_9.dll`
 
 The folder structure should look like this:
 
 `GeoForFramework/App_Data/proj/`
-- `proj.dll`
+- `proj_9.dll`
 - `proj.db`
 
-If the package contains the files in nested folders, place the required files directly in `App_Data/proj`. Do not omit runtime DLL dependencies required by `proj.dll`.
+If the package contains the files in nested folders, place the required files directly in `App_Data/proj`. Do not omit runtime DLL dependencies required by `proj_9.dll`.
 
 ## 2. Open the project in Visual Studio
 
@@ -70,7 +70,7 @@ This section is only relevant when deploying to a Windows server outside the loc
    - `C:\inetpub\wwwroot\geo-for-framework`
 3. Ensure the app folder contains:
    - the compiled ASP.NET WebForms files
-   - `App_Data\proj\proj.dll`
+   - `App_Data\proj\proj_9.dll`
    - `App_Data\proj\proj.db`
 4. In IIS Manager:
    - Create or select an IIS site
@@ -91,7 +91,7 @@ This is important because:
 
 If the app returns an error when converting coordinates:
 
-- Check that `proj.dll` exists in `GeoForFramework/App_Data/proj`
+- Check that `proj_9.dll` exists in `GeoForFramework/App_Data/proj`
 - Check that `proj.db` exists in the same folder
 - Confirm the app pool has read permissions to that folder
 - Confirm the app is really running the output folder that contains those files
